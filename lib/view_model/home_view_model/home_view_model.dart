@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:equalizer_booster/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter/services.dart';
 import 'package:volume_controller/volume_controller.dart';
@@ -87,6 +88,16 @@ abstract class HomeViewModelBase with Store {
     startRepeatedFunction();
 
     loadBannerAd();
+
+    openReview();
+  }
+
+  openReview() async {
+    final InAppReview inAppReview = InAppReview.instance;
+
+    if (await inAppReview.isAvailable()) {
+      inAppReview.requestReview();
+    }
   }
 
   dispose() {}
@@ -109,7 +120,7 @@ class LoudnessEnhancerHelper {
       dynamic test = await platform.invokeMethod('disableLoudnessEnhancer');
       log(test.toString());
     } catch (e) {
-      print("Error: $e");
+      log("Error: $e");
     }
   }
 
@@ -119,7 +130,7 @@ class LoudnessEnhancerHelper {
           .invokeMethod('setTargetGain', {'targetGain': targetGain});
       log(test.toString());
     } catch (e) {
-      print("Error: $e");
+      log("Error: $e");
     }
   }
 
@@ -129,7 +140,7 @@ class LoudnessEnhancerHelper {
           .invokeMethod('enableBassBoost', {'targetStrength': targetStrength});
       log(test.toString());
     } catch (e) {
-      print("Error: $e");
+      log("Error: $e");
     }
   }
 }

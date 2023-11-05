@@ -49,7 +49,7 @@ class HomeView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
+              const SizedBox(height: 30),
               Observer(builder: (_) {
                 return CircleSlider(
                   value: viewModel.volumeValue,
@@ -80,7 +80,7 @@ class HomeView extends StatelessWidget {
                         horizontal: AppValues.screenPadding),
                     child: Row(
                       children: [
-                        for (int i = 0; i <= 150; i += 25) ...[
+                        for (int i = 50; i <= 150; i += 25) ...[
                           bubchoose(
                             themeData,
                             '$i%',
@@ -97,7 +97,7 @@ class HomeView extends StatelessWidget {
               const Padding(
                 padding:
                     EdgeInsets.symmetric(horizontal: AppValues.screenPadding),
-                child: Divider(height: 50, thickness: 2),
+                child: Divider(height: 100, thickness: 2),
               ),
               Observer(builder: (_) {
                 return CircleSlider(
